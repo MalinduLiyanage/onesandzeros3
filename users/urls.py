@@ -10,5 +10,5 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('users/activate/<str:token>/', activate_user, name='activate_user'),
-    path('users/login/<str:email>/<str:password>/', login_user, name='login_user'),
+    path('users/login/<str:email>/<str:password>/<str:activation_status>/', login_user, name='login_user'),
 ]
