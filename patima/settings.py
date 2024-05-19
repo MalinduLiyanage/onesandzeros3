@@ -95,9 +95,25 @@ WSGI_APPLICATION = 'patima.wsgi.application'
 #    }
 #}
 
+DATABASES = {}
+
 database_url = os.environ.get("DATABASE_URL")
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+if database_url:
+    DATABASES["default"] = dj_database_url.parse(database_url)
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'patimadb',
+            'USER': 'patimadb_user',
+            'PASSWORD': 'YqhIJv9FSkH7jIq9AnwlLiufLfE1JdQO',
+            'HOST': 'dpg-cp4nb421hbls73f3u7p0-a.oregon-postgres.render.com',
+            'PORT': '5432',
+        }
+    }
+
+
 
 #DATABASES = {
 #    'default': {
