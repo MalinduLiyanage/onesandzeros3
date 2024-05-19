@@ -1,7 +1,13 @@
 asgiref==3.8.1
+dj-database-url==2.1.0
 Django==5.0.6
 djangorestframework==3.15.1
+gunicorn==22.0.0
+packaging==24.0
+psycopg2-binary==2.9.9
 sqlparse==0.5.0
+touch==2020.12.3
+typing_extensions==4.11.0
 tzdata==2024.1
-psycopg2-binary
-dj-database-url
+values==2020.12.3
+waitress==3.0.0
