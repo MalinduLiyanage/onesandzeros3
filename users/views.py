@@ -61,10 +61,19 @@ def activate_user(request, token):
 
 
 @api_view(['GET'])
-def login_user(request, email,password):
-    try:
-        user = User.objects.get(email=email,password=password)
+def login_user(request, email, password):
+    # Authenticate user based on email and password
+    user = authenticate(request, username=email, password=password)
+    
+    if user is not None:
+        # Check if the user's activation status is false
+        if not user.profile.activation_status:  # Assuming activation_status is in a related profile model
+            return Response({'error': 'Account not activated'}, status=status.HTTP_403_FORBIDDEN)
+        
+        # User is authenticated and activated
         return Response({'message': 'OK'}, status=status.HTTP_200_OK)
-    except User.DoesNotExist:
-        return Response({'error': 'NOOOOO'}, status=status.HTTP_404_NOT_FOUND)
+    else:
+        # User credentials do not match
+        return Response({'error': 'Invalid user'}, status=status.HTTP_404_NOT_FOUND)
+
 
